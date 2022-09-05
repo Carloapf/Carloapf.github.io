@@ -1,8 +1,13 @@
 import * as React from "react";
 import { List, Datagrid, TextField, ReferenceField, Edit, EditButton,Create,SimpleForm,ReferenceInput,TextInput, useRecordContext} from 'react-admin';
 
+const postFilters = [
+    <TextInput source="q" label="Search" alwaysOn />,
+    <ReferenceInput source="userId" label="User" reference="users" />,
+];
+
 export const PostList = porps => (
-    <List>
+    <List filters={postFilters}>
        <Datagrid>
            <TextField source="id" />
             <ReferenceField source="userId" reference="users" />
