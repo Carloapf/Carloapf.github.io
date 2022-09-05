@@ -1,5 +1,5 @@
 import * as React from "react";
-import { List, Datagrid, TextField, ReferenceField, Edit, EditButton,Create,SimpleForm,ReferenceInput,TextInput} from 'react-admin';
+import { List, Datagrid, TextField, ReferenceField, Edit, EditButton,Create,SimpleForm,ReferenceInput,TextInput, useRecordContext} from 'react-admin';
 
 export const PostList = porps => (
     <List>
@@ -11,8 +11,13 @@ export const PostList = porps => (
         </Datagrid>
     </List>
 ); 
+const PostTitle = () => {
+    const record = useRecordContext();
+    return <span>Post {record ? `"${record.title}"` : ''}</span>;
+};
+
 export const PostEdit = () => (
-    <Edit>
+    <Edit title={<PostTitle/>}>
         <SimpleForm>
             <TextInput disabled source="id" />
             <ReferenceInput source="userId" reference="users" />
